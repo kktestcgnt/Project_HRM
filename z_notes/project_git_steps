@@ -1,0 +1,36 @@
+
+Example Repository - https://github.com/kktestcgnt/Project_HRM.git
+
+Add new repository on Master git account
+On Master repository add collaborators in Repository Settings
+
+Login to Collaborator email and accept the Invitation from Master repository
+
+Clone the new repository from Master in Pycharm to create new Project using VCS option
+
+Add new user - cmd>git config --global user.name "krishnachaya"
+Add email - cmd>git config --global user.email xxx@gmail.com
+Check user - cmd>git config user.name
+Check email - cmd>git config user.email
+
+Create a file - .gitignore (This contains list of unwanted files that are not to be moved to repository)
+
+Verify status of Project changes - cmd>git status
+
+Adding a file to local repository:
+Add a specific file changes to repository - cmd>git add one.txt
+Add whole project chnages to repository - cmd>git add .
+Commit the changes to local repository - cmd>git commit -m "add a meaningful comment about the changes in project."
+
+Adding remote repository - cmd>git remote add origin <linkhere>
+
+
+For authenticating the user to read/write to remote repository
+
+cmd>cd .ssh
+cmd>ssh-keygen
+cmd>copy the contents from id_rsa.pub and paste it in git-project/settings/Deploykeys click on add diploykey and paste the content
+
+To know the active branch - cmd>git branch
+
+To set upstream - cmd>git push --set-upstream origin main/master
