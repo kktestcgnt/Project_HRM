@@ -19,7 +19,7 @@ Verify status of Project changes - cmd>git status
 
 Adding a file to local repository:
 Add a specific file changes to repository - cmd>git add one.txt
-Add whole project chnages to repository - cmd>git add .
+Add whole project changes to repository - cmd>git add .
 Commit the changes to local repository - cmd>git commit -m "add a meaningful comment about the changes in project."
 
 Adding remote repository - cmd>git remote add origin <linkhere>
