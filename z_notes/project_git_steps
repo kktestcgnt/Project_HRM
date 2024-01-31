@@ -36,3 +36,10 @@ cmd>copy the contents from id_rsa.pub and paste it in git-project/settings/Deplo
 To know the active branch - cmd>git branch
 
 To set upstream - cmd>git push --set-upstream origin main/master
+
+TO check the difference in code lines (added / deleted)
+git diff
+
+
+
+https://gist.github.com/kwmiebach/3fd49612ef7a52b5ce3a
