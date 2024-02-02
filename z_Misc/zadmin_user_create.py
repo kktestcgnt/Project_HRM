@@ -46,13 +46,44 @@ print('Add System user page validation Successful')
 time.sleep(3)
 
 user_dropdown = (By.XPATH, "//label[text() = 'User Role']//parent::div//following-sibling::div/div/div//following-sibling::div/i")
-user_dropdown_select_admin = (By.XPATH, "//label[text() = 'User Role']//parent::div//following-sibling::div/div/div/div[text() = 'Admin']")
-
 driver.find_element(user_dropdown[0], user_dropdown[1]).click()
 time.sleep(3)
+
+user_dropdown_select_admin = (By.XPATH, "//label[text() = 'User Role']//parent::div//following-sibling::div/div/div[2]/div[2]/span[text() = 'Admin']")
 driver.find_element(user_dropdown_select_admin[0], user_dropdown_select_admin[1]).click()
+time.sleep(3)
+
+user_status_dropdown = (By.XPATH, "//label[text() = 'Status']//parent::div//following-sibling::div/div/div//following-sibling::div/i")
+driver.find_element(user_status_dropdown[0], user_status_dropdown[1]).click()
+time.sleep(3)
+
+user_status_select_enabled = (By.XPATH, "//label[text() = 'Status']//parent::div//following-sibling::div/div/div[2]/div[2]/span[text()='Enabled']")
+driver.find_element(user_status_select_enabled[0], user_status_select_enabled[1]).click()
+time.sleep(3)
+
+employee_name = (By.XPATH, "//label[text() = 'Employee Name']//parent::div//following-sibling::div/div/div/input")
+driver.find_element(employee_name[0], employee_name[1]).send_keys("HRM KKTest")
+time.sleep(7)
+# ToDo - Add Validations
+
+su_username = (By.XPATH, "//label[text() = 'Username']//parent::div//following-sibling::div/input")
+# ToDo - Add Validations
+
+driver.find_element(su_username[0], su_username[1]).send_keys("kktestadmin")
+time.sleep(7)
+# ToDo - Add condition for Already Exists User
+
+su_password = (By.XPATH, "//label[text() = 'Password']//parent::div//following-sibling::div/input")
+driver.find_element(su_password[0], su_password[1]).send_keys("kktestadmin1")
+time.sleep(7)
+
+su_confirm_password = (By.XPATH, "//label[text() = 'Confirm Password']//parent::div//following-sibling::div/input")
+driver.find_element(su_confirm_password[0], su_confirm_password[1]).send_keys("kktestadmin1")
 time.sleep(10)
 
+su_adduser_save_btn = (By.XPATH, "//button[text() = ' Save ']")
+driver.find_element(su_adduser_save_btn[0], su_adduser_save_btn[1]).click()
+time.sleep(10)
 
 
 
