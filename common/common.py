@@ -1,6 +1,9 @@
 import configparser
 
+import pytest
 
+
+@pytest.mark.usefixtures("setup")
 class BaseClass:
 
     def get_data(self):

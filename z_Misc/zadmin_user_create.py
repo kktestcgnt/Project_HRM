@@ -23,6 +23,9 @@ time.sleep(3)
 driver.find_element(login_btn[0], value=login_btn[1]).click()
 time.sleep(10)
 
+
+driver.implicitly_wait(10)
+
 admin_tab = (By.XPATH, "//span[text() = 'Admin']")
 driver.find_element(admin_tab[0], value=admin_tab[1]).click()
 time.sleep(10)
@@ -62,7 +65,7 @@ driver.find_element(user_status_select_enabled[0], user_status_select_enabled[1]
 time.sleep(3)
 
 employee_name = (By.XPATH, "//label[text() = 'Employee Name']//parent::div//following-sibling::div/div/div/input")
-driver.find_element(employee_name[0], employee_name[1]).send_keys("HRM KKTest")
+driver.find_element(employee_name[0], employee_name[1]).send_keys("Virat  Kohli")
 time.sleep(7)
 # ToDo - Add Validations
 
@@ -79,11 +82,16 @@ time.sleep(7)
 
 su_confirm_password = (By.XPATH, "//label[text() = 'Confirm Password']//parent::div//following-sibling::div/input")
 driver.find_element(su_confirm_password[0], su_confirm_password[1]).send_keys("kktestadmin1")
-time.sleep(10)
+time.sleep(7)
 
 su_adduser_save_btn = (By.XPATH, "//button[text() = ' Save ']")
 driver.find_element(su_adduser_save_btn[0], su_adduser_save_btn[1]).click()
 time.sleep(10)
+
+su_adduser_success_validation = (By.XPATH, "//p[text()='Successfully Saved']")
+success_msg = driver.find_element(su_adduser_success_validation[0], su_adduser_success_validation[1]).text
+assert success_msg == 'Successfully Saved', 'Add System user success validation FAILED.'
+print('Add System user success validation Successful')
 
 
 
