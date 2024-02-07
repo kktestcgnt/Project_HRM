@@ -1,6 +1,18 @@
 
+pytest run commands
+--------------------
+py.test -k "test_add_system_user" -s -v
+
 xpath - https://www.guru99.com/xpath-selenium.html
 
 xpath for disappearing elements:
 https://www.youtube.com/watch?v=Que56MDxYzQ
 https://www.youtube.com/watch?v=UqJo4Pd2Ers
+
+
+Search: typeerror: takes 2 positional arguments but 3 were given
+https://stackoverflow.com/questions/23944657/typeerror-method-takes-1-positional-argument-but-2-were-given-but-i-only-pa
+https://bobbyhadz.com/blog/python-typeerror-takes-2-positional-argument-but-3-were-given
+
+Search - why do we need explicit wait in python selenium
+https://www.tutorialspoint.com/what-is-the-explicit-wait-in-selenium-with-python#:~:text=The%20wait%20concept%20in%20Selenium,step%20of%20the%20test%20case.
