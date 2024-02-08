@@ -21,3 +21,7 @@ class BaseClass:
         w.until(expected_conditions.presence_of_element_located(element_id))
         print("Element is Present")
 
+    def get_table_data(self, page_objects_link):
+        pass
+
+
