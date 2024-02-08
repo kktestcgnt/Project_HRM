@@ -26,7 +26,7 @@ driver.find_element(login_btn[0], value=login_btn[1]).click()
 
 driver.implicitly_wait(10)
 
-admin_tab = (By.XPATH, "//span[text() = 'Admin']")
+admin_tab = (By.XPATH, "//span[text() = 'Admin']")  # For admin it is "Admin", for PIM page it is "PIM"
 driver.find_element(admin_tab[0], value=admin_tab[1]).click()
 time.sleep(5)
 
@@ -65,7 +65,7 @@ for value in range(len(x)):
             print(page_table_column_name_text)
             z[1] = y
 
-            if 'Employee' in page_table_column_name_text:
+            if 'Employee' in page_table_column_name_text:   # For admin page column reference is Employee, for PIM page column reference is Last Name
                 index = column + 1
                 break
 
