@@ -1,7 +1,6 @@
 import random
 import time
 
-
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -42,7 +41,6 @@ print(len(x))
 time.sleep(5)
 print(page_table_header_body)
 z = page_table_header_body
-
 
 for value in range(len(x)):
     z = list(z)
@@ -88,3 +86,7 @@ for value in range(len(x)):
         print(index)
 
     z = page_table_header_body
+
+
+def table_generic_fn(page_value, column_reference): # Above lines from 1 to 88 need tp be copied in this function and copy the same function in base class and use this generic function in test_admin_page.py
+    pass
