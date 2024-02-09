@@ -6,6 +6,8 @@ import pytest
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+file_handler = 0
+
 
 @pytest.mark.usefixtures("setup")
 class BaseClass:
@@ -43,8 +45,10 @@ class BaseClass:
         # Set Log Format
         formatter = logging.Formatter("%(asctime)s - %(filename)s - %(lineno)s - %(funcName)s - %(levelname)s - %(message)s")
 
+        global file_handler
         # Define File Handler
-        file_handler = logging.FileHandler("../logs/log" + current_time + ".log", mode='a')
+        if file_handler == 0:
+            file_handler = logging.FileHandler("../logs/log" + current_time + ".log", mode='a')
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
 
@@ -58,8 +62,5 @@ class BaseClass:
     def logger(self):
         return self.logging()
 
-
     def get_table_data(self, page_objects_link):
         pass
-
-

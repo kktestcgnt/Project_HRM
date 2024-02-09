@@ -51,7 +51,7 @@ class TestAdminPage(BaseClass):
         obj_admin_page.selecting_enabled_system_status().click()
 
         # Adding new employee name to add system user
-        obj_admin_page.add_employee_name().send_keys("Russ")
+        obj_admin_page.add_employee_name().send_keys("Sand")
 
         self.explicit_wait_hrm(3, obj_admin_page.employee_name_select)
 
