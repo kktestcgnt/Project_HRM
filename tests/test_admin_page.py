@@ -9,7 +9,6 @@ from objects.admin_page_objects import AdminPageObjects
 class TestAdminPage(BaseClass):
 
     def test_add_system_user(self):
-        print("Driver from TestCase : ", self.driver)
 
         obj_admin_page = AdminPageObjects(self.driver)
 
@@ -22,8 +21,8 @@ class TestAdminPage(BaseClass):
 
         # Validating navigation to admin page
         admin_page_validation_text = obj_admin_page.validating_admin_page().text
-        assert admin_page_validation_text == 'System Users', 'Admin page validation is FAILED'
-        print("Admin page validation is Successful")
+        assert admin_page_validation_text == 'System Users', self.logging().error('Admin page validation is FAILED')
+        self.logging().info("Admin page validation is Successful")
 
         # Navigating to system user add page from admin page
         obj_admin_page.goto_system_user_add_page().click()
@@ -32,8 +31,8 @@ class TestAdminPage(BaseClass):
 
         # Validating navigation to system user add page
         system_user_add_page_validation_text = obj_admin_page.validating_system_user_add_page().text
-        assert system_user_add_page_validation_text == 'Add User', 'Add System user page validation FAILED.'
-        print('Add System user page validation Successful')
+        assert system_user_add_page_validation_text == 'Add User', self.logging().error('Add System user page validation FAILED.')
+        self.logging().info('Add System user page validation Successful')
 
         # To expand system user role dropdown
         obj_admin_page.expanding_user_role_dropdown().click()
@@ -74,7 +73,7 @@ class TestAdminPage(BaseClass):
         self.explicit_wait_hrm(3, obj_admin_page.system_user_adduser_success_validation)
 
         add_system_user_success_message_text = obj_admin_page.validating_system_user_adduser_success_message().text
-        assert add_system_user_success_message_text == 'Successfully Saved', 'Add System user success validation FAILED.'
-        print('Add System user success validation Successful')
+        assert add_system_user_success_message_text == 'Successfully Saved', self.logging().error('Add System user success validation FAILED.')
+        self.logging().info('Add System user success validation Successful')
 
         time.sleep(10)
