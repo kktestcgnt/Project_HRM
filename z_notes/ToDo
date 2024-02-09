@@ -1,9 +1,12 @@
 
+Implicit and explicit waits actual usage in framework. Check with Srinivas/ Imran/ Sirisha
+Difference between time sleep and implicit wait
 
 how to reference class variables in class methods. and what is use of * before class name in method
 
-
-Relative (//) and Absolute (/) path
+//tagname[@attribute = 'value']
+driver.finelement().get_attribute('class') - get attribute value of particular class (or any) attribute
+Relative (//) and Absolute (/) path ?
 Implicit and Explicit wait - implement in framework
 Icon validations
 Pie/ Bar graph verifications
@@ -25,6 +28,7 @@ Data Class
 Lambda, map, filter, reduce
 generators
 decorators
+files
 
 Exceptions
 
