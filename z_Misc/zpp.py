@@ -137,7 +137,6 @@ obj_child.display()
 # Child(Parent2, Parent1) - Output : In Parent2
 """
 
-
 # ====================================================================
 """
 # Multilevel Inheritance ---->
@@ -172,3 +171,135 @@ obj_child.display()
 # from GrandParent
 """
 
+# ====================================================================
+
+
+"""
+----------------- xxxxxxxxxxxx -----------------------
+# class MyClass:
+#     class_var = "This is class variable"
+# 
+#     def __init__(self, arg1):
+#         self.arg1 = arg1
+# 
+#     def static_method_one():
+#         print('This is static class')
+# 
+#     def static_method_two(x, y):
+#         return x + y
+# 
+#     @staticmethod
+#     def static_method_three():
+#         print('from static method three')
+#         # print(self.arg1)
+#         # print(MyClass.arg1)
+# """
+
+
+# Traceback (most recent call last):
+#   File "H:\Python_Projects\Project_HRM\z_Misc\zpp.py", line 207, in <module>
+#     obj_myclass.static_method_three()
+#   File "H:\Python_Projects\Project_HRM\z_Misc\zpp.py", line 193, in static_method_three
+#     print(MyClass.arg1)
+#           ^^^^^^^^^^^^
+# AttributeError: type object 'MyClass' has no attribute 'arg1'
+# """
+#
+#         print(MyClass.class_var)
+#
+#
+# MyClass.static_method_one()
+# print(MyClass.static_method_two(3, 4))
+# obj_myclass = MyClass(5)
+#
+# # obj_myclass.static_method_one()
+# """
+# Output - Traceback (most recent call last):
+#   File "H:\Python_Projects\Project_HRM\z_Misc\zpp.py", line 189, in <module>
+#     obj_myclass.static_method_one()
+# TypeError: MyClass.static_method_one() takes 0 positional arguments but 1 was given
+#
+# obj_myclass.static_method_three()
+# """
+#
+#
+# class ChildOne(MyClass):
+#     pass
+#
+#
+# # obj_childone = ChildOne()
+# # Traceback (most recent call last):
+# #   File "H:\Python_Projects\Project_HRM\z_Misc\zpp.py", line 214, in <module>
+# #     obj_childone = ChildOne()
+# #                    ^^^^^^^^^^
+# # TypeError: MyClass.__init__() missing 1 required positional argument: 'arg1'
+#
+# class ChildTwo(ChildOne):
+#
+#     def __init__(self):
+#         pass
+#
+#
+# obj_childtwo = ChildTwo()
+# obj_childtwo.static_method_three()
+#
+# ----------------- xxxxxxxxxxxx -----------------------
+# """
+
+class LearnClassMethods:
+    class_attr = 'This is class attribute'
+
+    def class_method_one(self):
+        print(self.class_attr)
+
+    @classmethod
+    def class_method_two(cls):
+        print("Hello!")
+        print(LearnClassMethods.class_attr)
+
+
+obj_learn_class_methods = LearnClassMethods()
+obj_learn_class_methods.class_method_one()
+
+print(obj_learn_class_methods.class_attr)
+
+obj_learn_class_methods.class_method_two()
+
+
+# Output -
+# ===========
+# Traceback (most recent call last):
+#   File "H:\Python_Projects\Project_HRM\z_Misc\zpp.py", line 263, in <module>
+#     obj_learn_class_methods.class_method_two()
+# TypeError: LearnClassMethods.class_method_two() takes 0 positional arguments but 1 was given
+# ===========
+
+class LearnClassMethodsChild(LearnClassMethods):
+    child_attr = 'abcde'
+    count = 0
+
+    def __init__(self, arg1):
+        self.arg1 = arg1
+
+    @classmethod
+    def class_method_three(cls):
+        print("Hello!")
+        print(LearnClassMethods.class_attr)
+        print(cls.class_attr)
+        print(cls.child_attr)
+        print(LearnClassMethodsChild.child_attr)
+        # print(LearnClassMethodsChild.arg1)
+        cls.my_static()
+        cls.count = cls.count + 1
+
+    @staticmethod
+    def my_static():
+        if LearnClassMethodsChild.count > 5:
+            exit(0)
+        print(LearnClassMethodsChild.child_attr)
+        print('================')
+        LearnClassMethodsChild.class_method_three()
+
+
+obj_learn_class_methods_child = LearnClassMethodsChild(5)
+obj_learn_class_methods_child.class_method_three()
