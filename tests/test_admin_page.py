@@ -9,10 +9,15 @@ from objects.admin_page_objects import AdminPageObjects
 class TestAdminPage(BaseClass):
 
     def test_add_system_user(self):
-
         obj_admin_page = AdminPageObjects(self.driver)
 
         self.driver.implicitly_wait(10)
+
+        # Delete existing user function call ---> here
+
+        # Selecting Employee Name dynamically from existing System Users table
+        name = self.table_generic_fn('Admin', 'Employee')
+        print("Selected Employee name : ", name)
 
         # Navigating to admin page from HRM home page
         obj_admin_page.goto_admin_tab().click()
@@ -51,7 +56,7 @@ class TestAdminPage(BaseClass):
         obj_admin_page.selecting_enabled_system_status().click()
 
         # Adding new employee name to add system user
-        obj_admin_page.add_employee_name().send_keys("Sand")
+        obj_admin_page.add_employee_name().send_keys(name)
 
         self.explicit_wait_hrm(3, obj_admin_page.employee_name_select)
 

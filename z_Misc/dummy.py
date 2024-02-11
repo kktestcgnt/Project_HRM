@@ -22,14 +22,13 @@ time.sleep(3)
 driver.find_element(password[0], value=password[1]).send_keys("admin123")
 time.sleep(3)
 driver.find_element(login_btn[0], value=login_btn[1]).click()
-
 driver.implicitly_wait(10)
+
+# =================================================================================
 
 admin_tab = (By.XPATH, "//span[text() = 'PIM']")
 driver.find_element(admin_tab[0], value=admin_tab[1]).click()
 time.sleep(5)
-
-# =================================================================================
 
 page_table = (By.XPATH, "//div[@class = 'orangehrm-container']")
 page_table_header_body = (By.XPATH, "//div[@class = 'orangehrm-container']/div/div")
@@ -90,3 +89,32 @@ for value in range(len(x)):
 
 def table_generic_fn(page_value, column_reference): # Above lines from 1 to 88 need tp be copied in this function and copy the same function in base class and use this generic function in test_admin_page.py
     pass
+
+# count = 0
+#
+#
+# class MyClass:
+#     count = 0
+#
+#     def func1(self):
+#         MyClass.count = MyClass.count + 1
+#         print("Func1 Count : ", MyClass.count)
+#         print("Func1")
+#         self.func2()
+#
+#     def func2(self):
+#         MyClass.count = MyClass.count + 1
+#         print("Func2 Count : ", MyClass.count)
+#         if MyClass.count > 5:
+#             exit(0)
+#         print('Func2')
+#         self.func1()
+#
+#
+# obj_func2 = MyClass()
+# obj_func2.func2()
+
+
+
+
+

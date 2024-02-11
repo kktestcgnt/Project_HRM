@@ -246,25 +246,24 @@ obj_child.display()
 # ----------------- xxxxxxxxxxxx -----------------------
 # """
 
-class LearnClassMethods:
-    class_attr = 'This is class attribute'
-
-    def class_method_one(self):
-        print(self.class_attr)
-
-    @classmethod
-    def class_method_two(cls):
-        print("Hello!")
-        print(LearnClassMethods.class_attr)
-
-
-obj_learn_class_methods = LearnClassMethods()
-obj_learn_class_methods.class_method_one()
-
-print(obj_learn_class_methods.class_attr)
-
-obj_learn_class_methods.class_method_two()
-
+# class LearnClassMethods:
+#     class_attr = 'This is class attribute'
+#
+#     def class_method_one(self):
+#         print(self.class_attr)
+#
+#     @classmethod
+#     def class_method_two(cls):
+#         print("Hello!")
+#         print(LearnClassMethods.class_attr)
+#
+#
+# obj_learn_class_methods = LearnClassMethods()
+# obj_learn_class_methods.class_method_one()
+#
+# print(obj_learn_class_methods.class_attr)
+#
+# obj_learn_class_methods.class_method_two()
 
 # Output -
 # ===========
@@ -274,32 +273,41 @@ obj_learn_class_methods.class_method_two()
 # TypeError: LearnClassMethods.class_method_two() takes 0 positional arguments but 1 was given
 # ===========
 
-class LearnClassMethodsChild(LearnClassMethods):
-    child_attr = 'abcde'
+
+# =-=============================================================================
+class LearnClassMethodsChild:
+
     count = 0
 
-    def __init__(self, arg1):
-        self.arg1 = arg1
+    # def __init__(self, arg1):
+    #     self.arg1 = arg1
 
     @classmethod
     def class_method_three(cls):
-        print("Hello!")
-        print(LearnClassMethods.class_attr)
-        print(cls.class_attr)
-        print(cls.child_attr)
-        print(LearnClassMethodsChild.child_attr)
-        # print(LearnClassMethodsChild.arg1)
-        cls.my_static()
         cls.count = cls.count + 1
+        print("In class_method_three")
+        print('cls count : ', cls.count)
+        cls.my_static()
 
     @staticmethod
     def my_static():
-        if LearnClassMethodsChild.count > 5:
+        print('Count = ', LearnClassMethodsChild.count)
+        if LearnClassMethodsChild.count > 3:
             exit(0)
-        print(LearnClassMethodsChild.child_attr)
-        print('================')
-        LearnClassMethodsChild.class_method_three()
+        print('In my_static')
+        LearnClassMethodsChild.count = LearnClassMethodsChild.count + 1
+        # LearnClassMethodsChild.class_method_three()
 
 
-obj_learn_class_methods_child = LearnClassMethodsChild(5)
+class LearnClassMethodsNewChild(LearnClassMethodsChild):
+    def display(self):
+        print('from LearnClassMethodsNewChild -- count : ', self.count)
+
+
+obj_learn_class_methods_child = LearnClassMethodsChild()
 obj_learn_class_methods_child.class_method_three()
+# obj_learn_class_methods_child.my_static()
+obj_learn_class_methods_new_child = LearnClassMethodsNewChild()
+obj_learn_class_methods_new_child.display()
+
+

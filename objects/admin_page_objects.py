@@ -2,10 +2,12 @@ from selenium.webdriver.common.by import By
 
 
 class AdminPageObjects:
+    # page_value = ''
 
     def __init__(self, driver):
         self.driver = driver
 
+    # admin_tab_for_table = (By.XPATH, "//span[text() = '" + page_value + "']")
     admin_tab = (By.XPATH, "//span[text() = 'Admin']")
     admin_page_validation = (By.XPATH, "//h5[text() = 'System Users']")
     system_user_add_btn = (By.XPATH, "//button[text() = ' Add ']")
