@@ -176,7 +176,7 @@ class BaseClass:
                             z[1] = y
                         time.sleep(5)
                         self.driver.find_element(self.popup_delete_button[0], self.popup_delete_button[1]).click()
-                        time.sleep(20)
+                        time.sleep(5)
 
                         system_user_delete_success_validation = (By.XPATH, "//p[text()='Successfully Deleted']")
                         # print(system_user_delete_success_validation)

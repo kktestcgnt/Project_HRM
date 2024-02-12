@@ -19,8 +19,6 @@ class TestAdminPage(BaseClass):
         # Delete existing user function call ---> here
         self.table_element_delete('Admin', 'Username', username)
 
-
-"""
         # Selecting Employee Name dynamically from existing System Users table
         name = self.table_generic_fn('Admin', 'Employee')
         print("Selected Employee name : ", name)
@@ -88,4 +86,4 @@ class TestAdminPage(BaseClass):
         self.logging().info('Add System user success validation Successful')
 
         time.sleep(10)
-"""
+

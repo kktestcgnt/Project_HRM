@@ -1,0 +1,3 @@
+2024-02-12 13:34:41,583 - test_admin_page.py - 34 - test_add_system_user - INFO - Admin page validation is Successful
+2024-02-12 13:34:42,867 - test_admin_page.py - 44 - test_add_system_user - INFO - Add System user page validation Successful
+2024-02-12 13:34:46,395 - test_admin_page.py - 86 - test_add_system_user - INFO - Add System user success validation Successful
