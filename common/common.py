@@ -135,6 +135,7 @@ class BaseClass:
                     page_table_column_name_text = self.driver.find_element(z[0], z[1]).text
                     z[1] = y
                     if str(column_reference) in page_table_column_name_text:
+                        print("=============== >>>> ", column_reference)
                         index = column + 1
                     if str('Actions') in page_table_column_name_text:
                         delete_index = column + 1
@@ -142,14 +143,18 @@ class BaseClass:
                 z[1] = str(z[1]) + "/div"
                 row_count = self.driver.find_elements(z[0], value=z[1])
                 y = z[1]
-                for each_row in range(row_count + 1):
-                    z[1] = z[1] + '[' + str(each_row) + ']' + '/div/div[' + str(index) + ']/div'
+                for each_row in range(len(row_count)):
+                    z[1] = z[1] + '[' + str(each_row + 1) + ']' + '/div/div[' + str(index) + ']/div'
+                    print("========================= >>>>>>> ", z[1])
                     element_name = self.driver.find_element(z[0], z[1]).text
                     print("Selected Username : ", element_name)
-                    if element_name == element_value:
+                    if element_name in element_value:
+                        print("==========  Inside IF")
                         row_value = each_row
-
-                        z[1] = z[1] + '[' + str(row_value) + ']' + '/div/div[' + str(delete_index) + ']/div/button'
+                        z[1] = y
+                        z[1] = z[1] + '[' + str(each_row + 1) + ']' + '/div/div[' + str(delete_index) + ']/div/button'
+                        print(z[1])
+                        y = z[1]
 
                         # z[1] = //div[@class = 'orangehrm-container']/div/div[2]/div
                         # each_row = 3
@@ -159,18 +164,25 @@ class BaseClass:
                         actions_column_icons_count = self.driver.find_elements(z[0], value=z[1])
                         print(len(actions_column_icons_count))
                         for action_column_icon in range(len(actions_column_icons_count)):
-                            action_column_icon_attr_value = z[1] + '[' + str(action_column_icon) + ']/i'
+                            z[1] = z[1] + '[' + str(action_column_icon + 1) + ']/i'
+                            print("Button : ", z[1])
+                            # print(action_column_icon_attr_value)
+                            print("Trash attr value : ", self.driver.find_element(z[0], z[1]).get_attribute('class'))
+
                             if 'trash' in self.driver.find_element(z[0], z[1]).get_attribute('class'):
                                 self.driver.find_element(z[0], z[1]).click()
+                                print("Delete Icon path : ", z[1])
                                 break
-
+                            z[1] = y
+                        time.sleep(5)
                         self.driver.find_element(self.popup_delete_button[0], self.popup_delete_button[1]).click()
-                        time.sleep(10)
+                        time.sleep(20)
 
                         system_user_delete_success_validation = (By.XPATH, "//p[text()='Successfully Deleted']")
                         # print(system_user_delete_success_validation)
 
                         break
+                    z[1] = y
                 else:
                     print("User to be deleted is not found. Add new User")
 

@@ -9,12 +9,18 @@ from objects.admin_page_objects import AdminPageObjects
 class TestAdminPage(BaseClass):
 
     def test_add_system_user(self):
+        username = "kktestadmins"
+        password = "kktestadmins1"
+
         obj_admin_page = AdminPageObjects(self.driver)
 
         self.driver.implicitly_wait(10)
 
         # Delete existing user function call ---> here
+        self.table_element_delete('Admin', 'Username', username)
 
+
+"""
         # Selecting Employee Name dynamically from existing System Users table
         name = self.table_generic_fn('Admin', 'Employee')
         print("Selected Employee name : ", name)
@@ -64,13 +70,13 @@ class TestAdminPage(BaseClass):
         obj_admin_page.selecting_employee_name().click()
 
         # Adding username to add system user username field
-        obj_admin_page.add_system_user_username().send_keys("kktestadmins")
+        obj_admin_page.add_system_user_username().send_keys(username)
 
         # Adding password to system user password field
-        obj_admin_page.add_system_user_password().send_keys("kktestadmins1")
+        obj_admin_page.add_system_user_password().send_keys(password)
 
         # Adding confirm password to system user confirm password field
-        obj_admin_page.add_system_user_confirm_password().send_keys("kktestadmins1")
+        obj_admin_page.add_system_user_confirm_password().send_keys(password)
 
         # Save new system user
         obj_admin_page.save_system_user().click()
@@ -82,3 +88,4 @@ class TestAdminPage(BaseClass):
         self.logging().info('Add System user success validation Successful')
 
         time.sleep(10)
+"""
