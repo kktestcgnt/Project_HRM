@@ -20,6 +20,7 @@ console_handler = 0
 class BaseClass:
 
     page_table_header_body = (By.XPATH, "//div[@class = 'orangehrm-container']/div/div")
+    popup_delete_button = (By.XPATH, "//p[text() = 'Are you Sure?']//parent::div//following-sibling::div[2]/button[text() = ' Yes, Delete ']")
 
     def get_data(self):
         data = configparser.ConfigParser()
@@ -74,8 +75,8 @@ class BaseClass:
         return self.logging()
 
     def table_generic_fn(self, page_value, column_reference):
-        admin_tab = (By.XPATH, "//span[text() = '" + page_value + "']")
-        self.driver.find_element(admin_tab[0], value=admin_tab[1]).click()
+        hrm_tab = (By.XPATH, "//span[text() = '" + page_value + "']")
+        self.driver.find_element(hrm_tab[0], value=hrm_tab[1]).click()
         self.driver.implicitly_wait(5)
         time.sleep(5)
 
@@ -110,6 +111,70 @@ class BaseClass:
             z = self.page_table_header_body
 
         return name[0]
+
+    def table_element_delete(self, page_value, column_reference, element_value):
+        hrm_tab = (By.XPATH, "//span[text() = '" + page_value + "']")
+        self.driver.find_element(hrm_tab[0], value=hrm_tab[1]).click()
+        self.driver.implicitly_wait(5)
+        time.sleep(5)
+
+        x = self.driver.find_elements(self.page_table_header_body[0], value=self.page_table_header_body[1])
+        time.sleep(5)
+        z = self.page_table_header_body
+
+        for value in range(len(x)):
+            z = list(z)
+            z[1] = z[1] + '[' + str(value + 1) + ']'
+            page_table_header_att_value = self.driver.find_element(z[0], z[1]).get_attribute('class')
+            if 'header' in page_table_header_att_value:
+                z[1] = str(z[1]) + "/div/div"
+                column_count = self.driver.find_elements(z[0], value=z[1])
+                y = z[1]
+                for column in range(len(column_count)):
+                    z[1] = z[1] + '[' + str(column + 1) + ']'
+                    page_table_column_name_text = self.driver.find_element(z[0], z[1]).text
+                    z[1] = y
+                    if str(column_reference) in page_table_column_name_text:
+                        index = column + 1
+                    if str('Actions') in page_table_column_name_text:
+                        delete_index = column + 1
+            else:
+                z[1] = str(z[1]) + "/div"
+                row_count = self.driver.find_elements(z[0], value=z[1])
+                y = z[1]
+                for each_row in range(row_count + 1):
+                    z[1] = z[1] + '[' + str(each_row) + ']' + '/div/div[' + str(index) + ']/div'
+                    element_name = self.driver.find_element(z[0], z[1]).text
+                    print("Selected Username : ", element_name)
+                    if element_name == element_value:
+                        row_value = each_row
+
+                        z[1] = z[1] + '[' + str(row_value) + ']' + '/div/div[' + str(delete_index) + ']/div/button'
+
+                        # z[1] = //div[@class = 'orangehrm-container']/div/div[2]/div
+                        # each_row = 3
+                        # delete_index = 6
+                        # //div[@class = 'orangehrm-container']/div/div[2]/div[3]/div/div[6]/div
+
+                        actions_column_icons_count = self.driver.find_elements(z[0], value=z[1])
+                        print(len(actions_column_icons_count))
+                        for action_column_icon in range(len(actions_column_icons_count)):
+                            action_column_icon_attr_value = z[1] + '[' + str(action_column_icon) + ']/i'
+                            if 'trash' in self.driver.find_element(z[0], z[1]).get_attribute('class'):
+                                self.driver.find_element(z[0], z[1]).click()
+                                break
+
+                        self.driver.find_element(self.popup_delete_button[0], self.popup_delete_button[1]).click()
+                        time.sleep(10)
+
+                        system_user_delete_success_validation = (By.XPATH, "//p[text()='Successfully Deleted']")
+                        # print(system_user_delete_success_validation)
+
+                        break
+                else:
+                    print("User to be deleted is not found. Add new User")
+
+            z = self.page_table_header_body
 
     def get_table_data(self, page_objects_link):
         pass

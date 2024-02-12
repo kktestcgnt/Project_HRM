@@ -22,7 +22,6 @@ Python:
 Ongoing - OOPS
 ToDo -
 Encapsulation (public, protected, private)
-Static, Class, Instance methods
 Data Class
 
 Lambda, map, filter, reduce
@@ -32,9 +31,10 @@ files
 
 Exceptions
 
-Completed -
+ - Completed -
 Inheritance (Single level, Multilevel, Multiple)
 Polymorphism (Operating Overloading, Method Overloading, Method OverRiding)
+Static, Class, Instance methods
 
 
 Selenium
