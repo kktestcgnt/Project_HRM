@@ -195,7 +195,6 @@ obj_child.display()
 #         # print(MyClass.arg1)
 # """
 
-
 # Traceback (most recent call last):
 #   File "H:\Python_Projects\Project_HRM\z_Misc\zpp.py", line 207, in <module>
 #     obj_myclass.static_method_three()
@@ -275,6 +274,7 @@ obj_child.display()
 
 
 # =-=============================================================================
+"""
 class LearnClassMethodsChild:
 
     count = 0
@@ -310,4 +310,85 @@ obj_learn_class_methods_child.class_method_three()
 obj_learn_class_methods_new_child = LearnClassMethodsNewChild()
 obj_learn_class_methods_new_child.display()
 
+"""
+
+"""
+# Encapsulation
+# ==============
+
+# Access specifiers -
+# public - name - this is accessible for all
+# protected - _name - this is accessible to the class where it is defined and its derived classes (Inheritance)
+# private - __name - this is accessible only to the class where it is defined
+
+class EncapsulationClass:
+    public = 'public'
+    _protected = 'protected'
+    __private = 'private'
+
+# same is applicable for methods also.
+# def public():
+# def _protected():
+# def __private():
+
+
+obj_encap = EncapsulationClass()
+print(obj_encap.public)
+print(obj_encap._protected)
+# print(obj_encap.__private)
+print(_EncapsulationClass._obj_encap.__private)
+"""
+
+"""
+# Data Class
+# ============
+
+from dataclasses import dataclass
+
+
+@dataclass
+class Data:
+    name: str
+    roll_no: int
+    id: int
+    salary: float
+
+
+obj_data1 = Data('data', 22, 5678, 23456.987)
+print(obj_data1)
+obj_data2 = Data('data', 22, 5678, 23456.987)
+# print(obj_data2)
+if obj_data1 == obj_data2:
+    print('inside if')
+    print(obj_data2)
+obj_data3 = 5
+print(isinstance(obj_data1, Data))
+print(isinstance(obj_data3, Data))
+
+# How do you find out an object belongs to particular class or not.
+# Ans: using method instance()
+"""
+
+
+class ABC:
+    abc_attr = 3
+
+
+obj_abc = ABC()
+print(obj_abc.abc_attr)
+obj_abc.abc_attr = 'qwerty'
+print(obj_abc.abc_attr)
+
+setattr(obj_abc, 'abc_attr', 1234)
+print(obj_abc.abc_attr)
+
+setattr(obj_abc, 'abc_attr', 'asdfgh')
+print(obj_abc.abc_attr)
+
+my_dict = {'a': 1, 'b': 'abc'}
+print(my_dict['b'])
+print(my_dict.get('a'))
+
+for key, value in my_dict.items():
+    print(key, value)
 

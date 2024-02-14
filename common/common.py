@@ -80,35 +80,35 @@ class BaseClass:
         self.driver.implicitly_wait(5)
         time.sleep(5)
 
-        x = self.driver.find_elements(self.page_table_header_body[0], value=self.page_table_header_body[1])
+        page_table_header_body_elements = self.driver.find_elements(self.page_table_header_body[0], value=self.page_table_header_body[1])
         time.sleep(5)
-        z = self.page_table_header_body
+        hrm_table_ref = self.page_table_header_body
 
-        for value in range(len(x)):
-            z = list(z)
-            z[1] = z[1] + '[' + str(value + 1) + ']'
-            page_table_header_att_value = self.driver.find_element(z[0], z[1]).get_attribute('class')
+        for value in range(len(page_table_header_body_elements)):
+            hrm_table_ref = list(hrm_table_ref)
+            hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(value + 1) + ']'
+            page_table_header_att_value = self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).get_attribute('class')
             if 'header' in page_table_header_att_value:
-                z[1] = str(z[1]) + "/div/div"
-                column_count = self.driver.find_elements(z[0], value=z[1])
-                y = z[1]
+                hrm_table_ref[1] = str(hrm_table_ref[1]) + "/div/div"
+                column_count = self.driver.find_elements(hrm_table_ref[0], value=hrm_table_ref[1])
+                y = hrm_table_ref[1]
                 for column in range(len(column_count)):
-                    z[1] = z[1] + '[' + str(column + 1) + ']'
-                    page_table_column_name_text = self.driver.find_element(z[0], z[1]).text
-                    z[1] = y
+                    hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(column + 1) + ']'
+                    page_table_column_name_text = self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).text
+                    hrm_table_ref[1] = y
                     if str(column_reference) in page_table_column_name_text:
                         index = column + 1
                         break
             else:
-                z[1] = str(z[1]) + "/div"
-                row_count = self.driver.find_elements(z[0], value=z[1])
-                y = z[1]
+                hrm_table_ref[1] = str(hrm_table_ref[1]) + "/div"
+                row_count = self.driver.find_elements(hrm_table_ref[0], value=hrm_table_ref[1])
+                y = hrm_table_ref[1]
                 select_row_num = random.randint(1, len(row_count))
-                z[1] = z[1] + '[' + str(select_row_num) + ']' + '/div/div[' + str(index) + ']/div'
-                emp_name = self.driver.find_element(z[0], z[1]).text
+                hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(select_row_num) + ']' + '/div/div[' + str(index) + ']/div'
+                emp_name = self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).text
                 name = emp_name.split(' ')
 
-            z = self.page_table_header_body
+            hrm_table_ref = self.page_table_header_body
 
         return name[0]
 
@@ -118,62 +118,62 @@ class BaseClass:
         self.driver.implicitly_wait(5)
         time.sleep(5)
 
-        x = self.driver.find_elements(self.page_table_header_body[0], value=self.page_table_header_body[1])
+        page_table_header_body_elements = self.driver.find_elements(self.page_table_header_body[0], value=self.page_table_header_body[1])
         time.sleep(5)
-        z = self.page_table_header_body
+        hrm_table_ref = self.page_table_header_body
 
-        for value in range(len(x)):
-            z = list(z)
-            z[1] = z[1] + '[' + str(value + 1) + ']'
-            page_table_header_att_value = self.driver.find_element(z[0], z[1]).get_attribute('class')
+        for value in range(len(page_table_header_body_elements)):
+            hrm_table_ref = list(hrm_table_ref)
+            hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(value + 1) + ']'
+            page_table_header_att_value = self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).get_attribute('class')
             if 'header' in page_table_header_att_value:
-                z[1] = str(z[1]) + "/div/div"
-                column_count = self.driver.find_elements(z[0], value=z[1])
-                y = z[1]
+                hrm_table_ref[1] = str(hrm_table_ref[1]) + "/div/div"
+                column_count = self.driver.find_elements(hrm_table_ref[0], value=hrm_table_ref[1])
+                y = hrm_table_ref[1]
                 for column in range(len(column_count)):
-                    z[1] = z[1] + '[' + str(column + 1) + ']'
-                    page_table_column_name_text = self.driver.find_element(z[0], z[1]).text
-                    z[1] = y
+                    hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(column + 1) + ']'
+                    page_table_column_name_text = self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).text
+                    hrm_table_ref[1] = y
                     if str(column_reference) in page_table_column_name_text:
                         print("=============== >>>> ", column_reference)
                         index = column + 1
                     if str('Actions') in page_table_column_name_text:
                         delete_index = column + 1
             else:
-                z[1] = str(z[1]) + "/div"
-                row_count = self.driver.find_elements(z[0], value=z[1])
-                y = z[1]
+                hrm_table_ref[1] = str(hrm_table_ref[1]) + "/div"
+                row_count = self.driver.find_elements(hrm_table_ref[0], value=hrm_table_ref[1])
+                y = hrm_table_ref[1]
                 for each_row in range(len(row_count)):
-                    z[1] = z[1] + '[' + str(each_row + 1) + ']' + '/div/div[' + str(index) + ']/div'
-                    print("========================= >>>>>>> ", z[1])
-                    element_name = self.driver.find_element(z[0], z[1]).text
+                    hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(each_row + 1) + ']' + '/div/div[' + str(index) + ']/div'
+                    print("========================= >>>>>>> ", hrm_table_ref[1])
+                    element_name = self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).text
                     print("Selected Username : ", element_name)
                     if element_name in element_value:
                         print("==========  Inside IF")
                         row_value = each_row
-                        z[1] = y
-                        z[1] = z[1] + '[' + str(each_row + 1) + ']' + '/div/div[' + str(delete_index) + ']/div/button'
-                        print(z[1])
-                        y = z[1]
+                        hrm_table_ref[1] = y
+                        hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(each_row + 1) + ']' + '/div/div[' + str(delete_index) + ']/div/button'
+                        print(hrm_table_ref[1])
+                        y = hrm_table_ref[1]
 
-                        # z[1] = //div[@class = 'orangehrm-container']/div/div[2]/div
+                        # hrm_table_ref[1] = //div[@class = 'orangehrm-container']/div/div[2]/div
                         # each_row = 3
                         # delete_index = 6
                         # //div[@class = 'orangehrm-container']/div/div[2]/div[3]/div/div[6]/div
 
-                        actions_column_icons_count = self.driver.find_elements(z[0], value=z[1])
+                        actions_column_icons_count = self.driver.find_elements(hrm_table_ref[0], value=hrm_table_ref[1])
                         print(len(actions_column_icons_count))
                         for action_column_icon in range(len(actions_column_icons_count)):
-                            z[1] = z[1] + '[' + str(action_column_icon + 1) + ']/i'
-                            print("Button : ", z[1])
+                            hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(action_column_icon + 1) + ']/i'
+                            print("Button : ", hrm_table_ref[1])
                             # print(action_column_icon_attr_value)
-                            print("Trash attr value : ", self.driver.find_element(z[0], z[1]).get_attribute('class'))
+                            print("Trash attr value : ", self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).get_attribute('class'))
 
-                            if 'trash' in self.driver.find_element(z[0], z[1]).get_attribute('class'):
-                                self.driver.find_element(z[0], z[1]).click()
-                                print("Delete Icon path : ", z[1])
+                            if 'trash' in self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).get_attribute('class'):
+                                self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).click()
+                                print("Delete Icon path : ", hrm_table_ref[1])
                                 break
-                            z[1] = y
+                            hrm_table_ref[1] = y
                         time.sleep(5)
                         self.driver.find_element(self.popup_delete_button[0], self.popup_delete_button[1]).click()
                         time.sleep(5)
@@ -182,11 +182,9 @@ class BaseClass:
                         # print(system_user_delete_success_validation)
 
                         break
-                    z[1] = y
+                    hrm_table_ref[1] = y
                 else:
-                    print("User to be deleted is not found. Add new User")
+                    print("User to be deleted is not found. Adding new User")
 
-            z = self.page_table_header_body
+            hrm_table_ref = self.page_table_header_body
 
-    def get_table_data(self, page_objects_link):
-        pass
