@@ -1,3 +1,4 @@
+from common.postgres import PostgreSQL
 
 class TestLoginPage:
 
@@ -20,9 +21,16 @@ class TestLoginPage:
             print(row_data)
 
     def test_login_check3(self, postgres3):
-        postgres3.execute("SELECT * FROM EMPLOYEE_DET;")
+        # postgres3.execute("SELECT * FROM EMPLOYEE_DET;")
+        #
+        # table_data = postgres3.fetchall()
+        #
+        # for row_data in table_data:
+        #     print(row_data)
 
-        table_data = postgres3.fetchall()
+        obj_postgresql = PostgreSQL(postgres3)
+        obj_postgresql.get_data('ID')
 
-        for row_data in table_data:
-            print(row_data)
+
+
+

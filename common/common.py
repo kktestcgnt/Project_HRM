@@ -11,13 +11,8 @@ from selenium.webdriver.common.by import By
 import time
 import random
 
-from abc import ABC, abstractmethod
-
 file_handler = 0
 console_handler = 0
-
-
-class ReadWrite:
 
 
 @pytest.mark.usefixtures("setup")
