@@ -9,7 +9,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from common.common import BaseClass
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def setup(request):
     read_data = BaseClass()
     login_creds = read_data.get_data()
