@@ -1,0 +1,44 @@
+PostgreSQL
+===========
+
+Install and configure postgres
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04
+
+
+Uninstall postgres
+https://www.commandprompt.com/education/how-to-uninstall-postgresql-from-ubuntu/#:~:text=Conclusion-,To%20uninstall%20Postgres%20from%20your%20Ubuntu%20operating%20system%2C%20open%20the,%E2%80%9Csudo%20apt%20autoremove%E2%80%9D%20command.
+
+
+python postgres
+https://www.youtube.com/watch?v=M2NzvnfS-hI
+
+
+Remote Connection to Postgres server
+=====================================
+https://blog.bigbinary.com/2016/01/23/configure-postgresql-to-allow-remote-connection.html
+https://www.bigbinary.com/blog/configure-postgresql-to-allow-remote-connection
+https://tecadmin.net/postgresql-allow-remote-connections/
+
+***** after changing values in postgresql.conf and pg_hba.conf :::: REBOOT THE SERVER
+/etc/postgresql/9.5/main/postgresql.conf
+
+
+Connect to PostgreSQL from Python
+=================================
+https://www.youtube.com/watch?v=M2NzvnfS-hI
+
+Reading from a PostgreSQL table to a pandas DataFrame:
+======================================================
+https://pythontic.com/pandas/serialization/postgresql
+
+
+Connecting to DB on postgres
+=============================
+sudo -i -u postgres
+psql
+
+
+list of databases	:	\l (or) \list
+create a database	:	create database testdb1;
+connect to database	:	\c testdb1 (or) \connect testdb1
+

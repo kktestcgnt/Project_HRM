@@ -11,14 +11,12 @@ from selenium.webdriver.common.by import By
 import time
 import random
 
-
 file_handler = 0
 console_handler = 0
 
 
 @pytest.mark.usefixtures("setup")
 class BaseClass:
-
     page_table_header_body = (By.XPATH, "//div[@class = 'orangehrm-container']/div/div")
     popup_delete_button = (By.XPATH, "//p[text() = 'Are you Sure?']//parent::div//following-sibling::div[2]/button[text() = ' Yes, Delete ']")
 
@@ -85,31 +83,46 @@ class BaseClass:
         hrm_table_ref = self.page_table_header_body
 
         for value in range(len(page_table_header_body_elements)):
+            # Converting Tuple into List for edit access/ update
             hrm_table_ref = list(hrm_table_ref)
+            # hrm_table_ref[1] is selected to point to the header tag
             hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(value + 1) + ']'
+            # page_table_header_att_value is loaded with header tag attribute (class) value. Eg: page_table_header_att_value = oxd-table-header
             page_table_header_att_value = self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).get_attribute('class')
             if 'header' in page_table_header_att_value:
+                # adding /div/div to get the number of column header tags. Eg: checkbox, Username, Emp ID, Actions ....
                 hrm_table_ref[1] = str(hrm_table_ref[1]) + "/div/div"
+                # Getting all column header tags into column_count variable
                 column_count = self.driver.find_elements(hrm_table_ref[0], value=hrm_table_ref[1])
-                y = hrm_table_ref[1]
+                # hrm_table_dummy_ref is the dummy reference for column header tags.
+                hrm_table_dummy_ref = hrm_table_ref[1]
                 for column in range(len(column_count)):
+                    # Iterating each column header tag
                     hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(column + 1) + ']'
+                    # Getting header tag name text
                     page_table_column_name_text = self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).text
-                    hrm_table_ref[1] = y
+                    hrm_table_ref[1] = hrm_table_dummy_ref
+                    # To get the column index/ number with reference to column reference name
                     if str(column_reference) in page_table_column_name_text:
                         index = column + 1
                         break
-            else:
+            else:  # for page_table_body
+                # /div is appended to select table body
                 hrm_table_ref[1] = str(hrm_table_ref[1]) + "/div"
+                # Total row count in table body
                 row_count = self.driver.find_elements(hrm_table_ref[0], value=hrm_table_ref[1])
-                y = hrm_table_ref[1]
+                # hrm_table_dummy_ref is the dummy reference for column header tags.
+                # hrm_table_dummy_ref = hrm_table_ref[1]
+                # Selecting random row number
                 select_row_num = random.randint(1, len(row_count))
+                # To retrieve particular tag(row, column) from above selected random row
                 hrm_table_ref[1] = hrm_table_ref[1] + '[' + str(select_row_num) + ']' + '/div/div[' + str(index) + ']/div'
+                # To retrieve particular element text(row, column) from above selected random row
                 emp_name = self.driver.find_element(hrm_table_ref[0], hrm_table_ref[1]).text
                 name = emp_name.split(' ')
-
+            # tag for page table header body
             hrm_table_ref = self.page_table_header_body
-
+        # Returning portion of selected element text. This is used to
         return name[0]
 
     def table_element_delete(self, page_value, column_reference, element_value):
@@ -187,4 +200,3 @@ class BaseClass:
                     print("User to be deleted is not found. Adding new User")
 
             hrm_table_ref = self.page_table_header_body
-

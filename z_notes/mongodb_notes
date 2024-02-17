@@ -1,0 +1,184 @@
+
+Mongo DB linux Tutorials:
+https://www.youtube.com/watch?v=NZXs8PYOgz0&list=PLtm3q4A2l--Ih1tZk9BQbofDwmJxIe3DN&index=2
+
+Mongo DB linux installation:
+https://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-ubuntu/
+
+Mongo DB linux Un-installation:
+https://stackoverflow.com/questions/48092353/failed-to-start-mongod-service-unit-mongod-service-not-found
+
+Auto-Start Mongo DB service on linux
+https://whyboobo.com/devops/autorestart-mongodb-systemctl-service/
+https://askubuntu.com/questions/61503/how-to-start-mongodb-server-on-system-start
+
+Mongo DB python
+https://www.youtube.com/watch?v=ZJSls9mPziM
+
+Access Mongo DB using python:
+https://kb.objectrocket.com/mongo-db/how-to-access-and-parse-mongodb-documents-in-python-364
+
+Mongo BD Remote Access:
+https://www.digitalocean.com/community/tutorials/how-to-configure-remote-access-for-mongodb-on-ubuntu-20-04
+https://www.fosslinux.com/35730/5-ways-to-check-if-a-port-is-open-on-a-remote-linux-pc.htm
+
+File "C:\Python311\Lib\site-packages\pymongo\topology.py", line 238, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: 192.168.0.26:27017: [WinError 10061] No connection could be made because the target machine actively refused it, Timeout: 30s, Topology Description: <TopologyDescription id: 63b27b016101e52d24e49fe0, topology_type: Unknown, servers: [<ServerDescription ('192.168.0.26', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('192.168.0.26:27017: [WinError 10061] No connection could be made because the target machine actively refused it')>]>
+
+https://askubuntu.com/questions/61503/how-to-start-mongodb-server-on-system-start
+
+sudo vim /etc/mongod.conf
+
+sudo service mongod start
+sudo service mongod status
+
+Commands:
+=========
+
+mongo
+
+List Databases : show dbs
+
+Connected Database: db.getName() (or) db
+
+Users:
+======
+
+List of users in DB: db.getUsers()
+Drop user: db.dropUser()
+
+use <db_name><
+db.createCollection("sysusers")
+show collections
+db.sysusers.insert({"name": "user1"})
+db.sysusers.find()
+db.sysusers.drop
+exit
+
+
+*****************************************************************************************************************************************
+
+cmd>mongo
+cmd>show dbs
+admin
+config
+local
+cmd>db #current database
+test
+cmd>use admin
+switched to db admin
+cmd>db
+admin
+			create database
+cmd>use prj1
+switchd to db prj1
+cmd>db
+prj1
+
+db
+|
+col
+|
+doc
+
+cmd>show dbs
+			create collections
+cmd>db.createCollection("Sports")
+cmd>show dbs
+prj1
+admin
+config
+local
+cmd>db.createCollection("Books")
+cmd>show collections
+Sports
+Books
+			create collections
+cmd>db.Sports.insert({Name:"Football",Matches:10,Won:7,Trophy:5,Location:"Chennai"})
+cmd>db.Sports.find()
+cmd>db.Sports.insert({Name:"Football",Matches:50,Won:7,Trophy:5,Location:"Chennai"})
+cmd>db.Sports.find()
+cmd>db.Sports.insertMany([{Name:"Circket",Matches:100,Won:88,Trophy:25,Location:"Hyderabad"},{Name:"Kabbadi",Matches:150,Won:130,Trophy:95,Location:"Banglore"}])
+cmd>db.Sports.insertMany([{Name:"Hockey",Matches:10,Won:8,Trophy:5,Location:"Hyderabad"},{Name:"Vollyball",Matches:50,Won:30,Trophy:25,Location:"Banglore"}])
+cmd>db.Sports.find()
+cmd>db.Sports.find().pretty()
+cmd>db.Sports.find().limit(3)
+cmd>db.Sports.find().limit(3).pretty()
+		skips first document and prints 3docs from 2 onwords
+cmd>db.Sports.find().limit(3).skip(1)
+		for reading implementing filtering
+cmd>db.Sports.find({Location:"Hyderabad"})
+cmd>db.Sports.find({Won:130})
+cmd>db.Sports.find({Matches:{$gt:10}})
+gt,lt,gte,lte,ne:greater than,less than,greater than equal,less than equal,not equal
+cmd>db.Sports.find({Matches:{$lt:100}})
+cmd>db.Sports.find({Matches:{$ne:10}})
+cmd>db.Sports.find({Location:{$in:["Hyderabad","chennai"]}})
+		not in list
+cmd>db.Sports.find({Location:{$nin:["Hyderabad","chennai"]}})
+cmd>db.Sports.find({Matchs:{$gt:40}})
+cmd>db.Sports.find({Won:{$lt:25}})
+		filtiring with two conditions matches > 40 and won <25
+cmd>db.Sports.find({$and:[{Matchs:{$gt:40}},{Won:{$lt:25}}]})
+		filtiring with two conditions matches > 40 and won <25 and location hyderabad
+cmd>db.Sports.find({$and:[{Matchs:{$gt:40}},{Won:{$lt:25}},{Location:"Hyderabad"}]})
+cmd>db.Sports.find({$or:[{Matchs:{$gt:40}},{Won:{$lt:25}},{Location:"Hyderabad"}]})
+cmd>db.Sports.find({$and:[{Matches:{$lte:52}},{Trophy:{$lt:10}}]})
+
+		display all fields with out the ids of collections
+cmd>db.Sports.find({},{"_id":0})
+		display the Names and trophies for the list of items
+cmd>db.Sports.find({},{"_id":0,Name:1,Trophy:1})
+		display all fields other than Names and trophies for the list of items
+cmd>db.Sports.find({},{"_id":0,Name:0,Trophy:0})
+cmd>db.Sports.find({Matches:{$gt:40}},{"_id":0,Name:0,Trophy:0})
+Note:
+	1.for list of fields in command eg(Name,Trophy) we should give either all 0 or all 1,we should not give some fields 1 and for some fields 0
+cmd>db.Sports.find({},{"_id":0,Name:0,Trophy:1})
+throughs error
+	2.Here Name and Trophy are user defined fields ,the above condition is applicable only for user defined fields and id is not user defined field,it is system defined one
+
+		updating data
+cmd>db.Sports.update({Name:"Hockey"},{$set:{Matches:150}})
+cmd>db.Sports.find()
+cmd>db.Sports.update({Name:"Hockey"},{$set:{Name:"Hcky"}})
+cmd>db.Sports.find()
+cmd>db.Sports.update({Name:"Football"},{$set:{Location:"Mumbai"}})
+cmd>db.Sports.find()
+cmd>db.Sports.updateMany({Name:"Football"},{$set:{Location:"Mumbai"}})
+cmd>db.Sports.find()
+cmd>db.Sports.updateMany({Name:"Football"},{$set:{Location:"Jummu"}})
+cmd>db.Sports.find()
+		change the location of all sports whos matches are greater than equal to 50 to Banglore
+cmd>db.Sports.updateMany({Matches:{$gte:50}},{$set:{Location:"Banglore"}})
+cmd>db.Sports.find()
+cmd>db.Sports.updateMany({},{$set:{Location:"Delhi"}})
+cmd>db.Sports.find()
+
+			remove
+cmd>db.Sports.remove{{Location:"Chennai"}}
+cmd>db.Sports.find()
+
+**********************************************************************************
+			pymongo
+
+from pymongo import MongoClient
+import time
+#mongodb-cloud with chayaramadevi login(Database->connect->connectfromapplication select python as driver)
+#connect=MongoClient("mongodb://manchella:Data1234@ac-0tmxj3o-shard-00-00.dpz6rjs.mongodb.net:27017,ac-0tmxj3o-shard-00-01.dpz6rjs.mongodb.net:27017,ac-0tmxj3o-shard-00-02.dpz6rjs.mongodb.net:27017/?ssl=true&replicaSet=atlas-14flmc-shard-0&authSource=admin&retryWrites=true&w=majority")
+connect=MongoClient("mongodb://192.168.0.171:27017")
+print(connect)
+db=connect["Epics"]
+coletion=db["Data"]
+y=[{"3":"Sita","4":"Rama"},{"5":"Lakshmana","6":"Urimila"}]
+x={"1":"Krishna","2":"Chaya"}
+coletion.insert_one(x)
+coletion.insert_many(y)
+time.sleep(1)
+z=coletion.find()
+print(list(z))
+
+vid:4  -- 1:05
+
+

@@ -369,7 +369,7 @@ print(isinstance(obj_data3, Data))
 # Ans: using method instance()
 """
 
-
+"""
 class ABC:
     abc_attr = 3
 
@@ -391,4 +391,27 @@ print(my_dict.get('a'))
 
 for key, value in my_dict.items():
     print(key, value)
+"""
 
+# Abstract methods
+# ===================
+
+from abc import ABC, abstractmethod
+
+
+class AbstractClassLearn(ABC):
+
+    @abstractmethod
+    def display(self):
+        pass
+
+
+class AbstractClassLearn2(AbstractClassLearn):
+    def display1(self):
+        print("abstract child display")
+
+
+# obj_abc_class = AbstractClassLearn()
+# obj_abc_class.display()
+obj_abc_class2 = AbstractClassLearn2()
+obj_abc_class2.display1()
