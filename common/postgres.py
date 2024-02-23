@@ -3,16 +3,19 @@ from enum import Enum
 
 
 class Data(Enum):
+    # For hard coding the indices of table column headers
     ID = 0
     NAME = 1
     LNAME = 2
 
-
-x = ('7369', 'SMITH', 'JOHN')
-print(x[Data['NAME'].value])
+# x = ('7369', 'SMITH', 'JOHN')
+# ref_indices_for_above_tuple_x = ('ID'. 'NAME', 'LNAME')
+# print(x[Data['NAME'].value])
+# Output = 'SMITH'
 
 
 class PostgreSQL(DataAccess):
+    # DataAccess is abstract class
 
     def __init__(self, data_pointer):
         self.data_pointer = data_pointer
@@ -25,14 +28,24 @@ class PostgreSQL(DataAccess):
         raw_data = self.data_pointer.fetchall()
         return raw_data
 
-        # for row_data in table_data:
-        #     print(row_data)
+    def get_data(self, *column_headers):
 
-    def get_data(self, z):
-        y = self.reading_data
-        print(y)
-        for each in y:
-            print(each[Data[str(z)].value])
+        size = len(column_headers)
+
+        raw_data = self.reading_data
+        print(raw_data)
+
+        if size == 1:
+            for each in raw_data:
+                print(each[Data[str(column_headers[0])].value])
+        else:
+            print('inside else')
+            for each in column_headers:
+                print(each)
+                for each_column in raw_data:
+                    print(each_column[Data[str(each)].value])
+                print('***************************************************************')
+
 
 
 

@@ -61,28 +61,33 @@ def postgres2():
     return x
 
 
+# postgresql = {'postgresql_connection': None, 'postgresql_pointer': 0}
+postgresql = {}
+
+
 @pytest.fixture()
-def postgres3():
-    def call1():
+def postgresql_connection():
+    global postgresql
+
+    def establishing_connection():
+        global postgresql
         hostname = '192.168.29.72'
         database = 'testdb'
         username = 'postgres'
         password = 'postgres'
         port = 5432
 
-        # psql_conn = None
-        # psql_cursor = None
-
-        psql_conn = psycopg2.connect(host=hostname,
-                                     dbname=database,
-                                     user=username,
-                                     password=password,
-                                     port=port)
-
-        print(psql_conn)  # Add Assert statement here.
+        postgresql['db_connection'] = psycopg2.connect(host=hostname,
+                                                       dbname=database,
+                                                       user=username,
+                                                       password=password,
+                                                       port=port)
+        print(postgresql['db_connection'])  # Add Assert statement here.
         print("Connection is Successful")
 
-        psql_cursor = psql_conn.cursor()
-        return psql_cursor
+        postgresql['db_cursor'] = postgresql['db_connection'].cursor()
+        return postgresql['db_cursor']
 
-    return call1()
+    yield establishing_connection()
+    postgresql['db_cursor'].close()
+    postgresql['db_connection'].close()
