@@ -1,4 +1,7 @@
+import pytest
+
 from common.postgres import PostgreSQL
+from common.mongodb import MongoDB
 
 
 class TestDataBase:
@@ -13,13 +16,15 @@ class TestDataBase:
         for row_data in table_data:
             print(row_data)
 
-    def test_login_check2(self, postgres2):
-        postgres2.execute("SELECT * FROM EMPLOYEE_DET;")
+    @pytest.mark.parametrize("mongodb_connection", [('mydb', 'sysusers')], indirect=True)
+    def test_read_data_mongodb(self, mongodb_connection):
+        """
+        :param mongodb_connection: This is a fixture which establishes connection to mongodb database and return the database connection
+        :return: This function returns None
+        """
 
-        table_data = postgres2.fetchall()
-
-        for row_data in table_data:
-            print(row_data)
+        print("\nTest Cursor : ", mongodb_connection)
+        obj_mongodb = MongoDB(mongodb_connection)
 
     def test_read_data_postgresql(self, postgresql_connection):
         """
