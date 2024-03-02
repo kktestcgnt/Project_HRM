@@ -1,3 +1,5 @@
+import configparser
+
 import psycopg2
 import pymongo
 import pytest
@@ -22,33 +24,21 @@ def mongodb_connection(request):
     return obj_mongodb
 
 
-def procedural_call():
-    hostname = '192.168.29.72'
-    database = 'testdb'
-    username = 'postgres'
-    password = 'postgres'
-    port = 5432
+def establishing_inifile_connection(inifile_path):
 
-    # psql_conn = None
-    # psql_cursor = None
-
-    psql_conn = psycopg2.connect(host=hostname,
-                                 dbname=database,
-                                 user=username,
-                                 password=password,
-                                 port=port)
-
-    print(psql_conn)  # Add Assert statement here.
-    print("Connection is Successful")
-
-    psql_cursor = psql_conn.cursor()
-    return psql_cursor
+    ini_cursor = configparser.ConfigParser()
+    print("\n", inifile_path)
+    ini_cursor.read(inifile_path)
+    # data.read("E:/python_projects/Project_HRM/data/data.ini")
+    print("in fixture : ", ini_cursor.sections())
+    return ini_cursor
 
 
 @pytest.fixture()
-def postgres2():
-    x = procedural_call()
-    return x
+def inifile_connection(request):
+    print('\nin fixture - ', request.param[0])
+    inifile_pointer = establishing_inifile_connection(request.param[0])
+    return inifile_pointer
 
 
 # postgresql = {'postgresql_connection': None, 'postgresql_pointer': 0}
@@ -61,7 +51,7 @@ def postgresql_connection():
 
     def establishing_connection():
         global postgresql
-        hostname = '192.168.29.72'
+        hostname = '192.168.0.171'
         database = 'testdb'
         username = 'postgres'
         password = 'postgres'

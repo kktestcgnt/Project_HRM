@@ -3,14 +3,16 @@ import time
 from selenium.webdriver.common.by import By
 
 from common.common import BaseClass
+from common.postgres import PostgreSQL
 from objects.admin_page_objects import AdminPageObjects
 
 
 class TestAdminPage(BaseClass):
 
-    def test_add_system_user(self):
-        username = "kktestadmins"
-        password = "kktestadmins1"
+    def test_add_system_user(self, postgresql_connection):
+        obj_postgresql = PostgreSQL(postgresql_connection)
+        username = obj_postgresql.get_data('USERNAME')
+        password = obj_postgresql.get_data('PASSWORD')
 
         obj_admin_page = AdminPageObjects(self.driver)
 
@@ -68,13 +70,13 @@ class TestAdminPage(BaseClass):
         obj_admin_page.selecting_employee_name().click()
 
         # Adding username to add system user username field
-        obj_admin_page.add_system_user_username().send_keys(username)
+        obj_admin_page.add_system_user_username().send_keys(obj_postgresql.get_data('USERNAME'))
 
         # Adding password to system user password field
-        obj_admin_page.add_system_user_password().send_keys(password)
+        obj_admin_page.add_system_user_password().send_keys(obj_postgresql.get_data('PASSWORD'))
 
         # Adding confirm password to system user confirm password field
-        obj_admin_page.add_system_user_confirm_password().send_keys(password)
+        obj_admin_page.add_system_user_confirm_password().send_keys(obj_postgresql.get_data('CONFIRM_PASSWORD'))
 
         # Save new system user
         obj_admin_page.save_system_user().click()

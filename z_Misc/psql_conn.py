@@ -1,6 +1,6 @@
 import psycopg2
 
-hostname = '192.168.29.72'
+hostname = '192.168.0.171'
 database = 'testdb'
 username = 'postgres'
 password = 'postgres'
@@ -21,7 +21,7 @@ try:
 
     psql_cursor = psql_conn.cursor()
 
-    psql_cursor.execute("SELECT * FROM EMPLOYEE_DET;")
+    psql_cursor.execute("SELECT * FROM HRM_ADMIN;")
 
     table_data = psql_cursor.fetchall()
 
