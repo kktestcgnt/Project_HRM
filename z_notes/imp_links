@@ -1,10 +1,19 @@
 parameterizing pytest fixture (Indirect parametrization)
 https://docs.pytest.org/en/7.3.x/example/parametrize.html#paramexamples
 
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (704, 8281)
+https://blog.qasource.com/software-development-and-qa-tips/how-to-resolve-element-click-intercepted-exception-in-selenium
+
 
 https://github.com/RaresCode/OrangeHRM
 
 https://www.youtube.com/watch?v=bd4uL4bLU-c
+
+Multiprocessing in python
+==========================
+https://www.youtube.com/watch?v=GT10PnUFLlE&t=472s
+https://www.youtube.com/watch?v=fKl2JW_qrso
+
 
 pytest run commands
 --------------------

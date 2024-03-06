@@ -37,6 +37,7 @@ def establishing_inifile_connection(inifile_path):
 @pytest.fixture()
 def inifile_connection(request):
     print('\nin fixture - ', request.param[0])
+    print(request.param[0]['app_login_page'])
     inifile_pointer = establishing_inifile_connection(request.param[0])
     return inifile_pointer
 

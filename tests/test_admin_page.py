@@ -10,16 +10,21 @@ from objects.admin_page_objects import AdminPageObjects
 class TestAdminPage(BaseClass):
 
     def test_add_system_user(self, postgresql_connection):
+        """
+
+        :param postgresql_connection: This is a fixture which is called from tests/conftest, which establishes postgresql connection.
+        :return: This method returns None
+        """
+
+        # PostgreSQL class contains methods to read and write data from/to the postgresql database.
         obj_postgresql = PostgreSQL(postgresql_connection)
-        username = obj_postgresql.get_data('USERNAME')
-        password = obj_postgresql.get_data('PASSWORD')
 
         obj_admin_page = AdminPageObjects(self.driver)
 
         self.driver.implicitly_wait(10)
 
         # Delete existing user function call ---> here
-        self.table_element_delete('Admin', 'Username', username)
+        self.table_element_delete('Admin', 'Username', obj_postgresql.get_data('USERNAME'))
 
         # Selecting Employee Name dynamically from existing System Users table
         name = self.table_generic_fn('Admin', 'Employee')
@@ -88,4 +93,5 @@ class TestAdminPage(BaseClass):
         self.logging().info('Add System user success validation Successful')
 
         time.sleep(10)
+
 

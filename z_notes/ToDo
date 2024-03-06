@@ -2,6 +2,10 @@
 Implicit and explicit waits actual usage in framework. Check with Srinivas/ Imran/ Sirisha
 Difference between time sleep and implicit wait
 
+@property
+def current_window_handle(self) -> str
+What is @property decorator ?????????????????
+
 how to reference class variables in class methods. and what is use of * before class name in method
 
 //tagname[@attribute = 'value']
@@ -21,9 +25,13 @@ Use fleet console to work on Web Tables.
 Python:
 Ongoing - OOPS
 ToDo -
-Encapsulation (public, protected, private)
-Data Class
+Selenium - new tab/window
 
+parallel execution on different browsers using pytest marker
+
+
+Python-
+threads - to run multi-browser tests at same time.
 Lambda, map, filter, reduce
 generators
 decorators
@@ -35,6 +43,8 @@ Exceptions
 Inheritance (Single level, Multilevel, Multiple)
 Polymorphism (Operating Overloading, Method Overloading, Method OverRiding)
 Static, Class, Instance methods
+Encapsulation (public, protected, private)
+Data Class
 
 
 Selenium

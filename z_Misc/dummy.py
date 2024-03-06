@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
+"""
 driver_service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=driver_service)
 
@@ -89,6 +90,7 @@ for value in range(len(x)):
 
 def table_generic_fn(page_value, column_reference): # Above lines from 1 to 88 need tp be copied in this function and copy the same function in base class and use this generic function in test_admin_page.py
     pass
+"""
 
 # count = 0
 #
@@ -115,6 +117,14 @@ def table_generic_fn(page_value, column_reference): # Above lines from 1 to 88 n
 # obj_func2.func2()
 
 
+import configparser
+
+# Create configparser object
+config_object = configparser.ConfigParser()
+with open("../data/data.ini", "r") as file_object:
+    print(config_object.read_file(file_object))
+    url=config_object.get("app_login_page")
+    print(url)
 
 
 
