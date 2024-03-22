@@ -2,7 +2,40 @@ import configparser
 
 import psycopg2
 import pymongo
+
 import pytest
+import time
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+
+from common.common import BaseClass
+
+
+@pytest.fixture()
+def multiple_window_setup(request):
+    read_data = BaseClass()
+    login_creds = read_data.get_data()
+
+    app_url = login_creds['app_login_page']["app_url"]
+
+    driver_service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=driver_service)
+
+    driver.maximize_window()
+    driver.get(app_url)
+    time.sleep(5)
+
+    # request.cls.driver = driver
+    print("Driver from Fixture : ", driver)
+
+    return driver
+
+    # yield
+    # add teardown code
+
 
 
 @pytest.fixture()
