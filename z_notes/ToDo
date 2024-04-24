@@ -36,6 +36,8 @@ Lambda, map, filter, reduce
 generators
 decorators
 files
+excel
+pdf files
 
 Exceptions
 
@@ -46,6 +48,7 @@ Static, Class, Instance methods
 Encapsulation (public, protected, private)
 Data Class
 
+=====================================================================================================================
 
 Selenium
 =========
@@ -53,8 +56,10 @@ Selenium Imps - https://www.lambdatest.com/blog/complete-guide-to-access-forms-i
 find element with CSS Selectors
 Calendar
 Alerts
-Multiple tabs/windows - https://www.geeksforgeeks.org/python-opening-multiple-tabs-using-selenium/
 iFrames
+
+ - Completed -
+ Multiple tabs/windows - https://www.geeksforgeeks.org/python-opening-multiple-tabs-using-selenium/
 
 
 
