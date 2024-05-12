@@ -42,7 +42,6 @@ class PostgreSQL(DataAccess):
     def get_data(self, *column_headers):
 
         size = len(column_headers)
-
         raw_data = self.reading_data
         # print(raw_data)
 

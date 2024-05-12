@@ -15,6 +15,11 @@ https://www.youtube.com/watch?v=GT10PnUFLlE&t=472s
 https://www.youtube.com/watch?v=fKl2JW_qrso
 
 
+Breakpoints usage in pycharm from command line
+===============================================
+https://www.youtube.com/watch?v=aZJnGOwzHtU
+
+
 pytest run commands
 --------------------
 py.test -k "test_add_system_user" -s -v

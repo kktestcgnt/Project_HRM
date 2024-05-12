@@ -62,8 +62,11 @@ iFrames
  Multiple tabs/windows - https://www.geeksforgeeks.org/python-opening-multiple-tabs-using-selenium/
 
 
+** Login Page test case, validation
+====================================
 
 
+How to validate that file select window is opened during file upload operation.
 
 
 

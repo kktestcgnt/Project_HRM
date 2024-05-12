@@ -37,6 +37,23 @@ def multiple_window_setup(request):
     # add teardown code
 
 
+@pytest.fixture()
+def alerts_setup():
+    read_data = BaseClass()
+    login_creds = read_data.get_data()
+
+    app_url = login_creds['alerts_page']["alerts_app_url"]
+
+    driver_service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=driver_service)
+
+    driver.maximize_window()
+    driver.get(app_url)
+    time.sleep(5)
+
+    print("Driver from Fixture : ", driver)
+    return driver
+
 
 @pytest.fixture()
 def mongodb_connection(request):
@@ -85,7 +102,7 @@ def postgresql_connection():
 
     def establishing_connection():
         global postgresql
-        hostname = '192.168.0.171'
+        hostname = '192.168.29.72'
         database = 'testdb'
         username = 'postgres'
         password = 'postgres'
@@ -100,6 +117,7 @@ def postgresql_connection():
         print("Connection is Successful")
 
         postgresql['db_cursor'] = postgresql['db_connection'].cursor()
+
         return postgresql['db_cursor']
 
     yield establishing_connection()

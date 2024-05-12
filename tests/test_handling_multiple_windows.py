@@ -36,7 +36,6 @@ def test_handling_multiple_windows(multiple_window_setup):
             obj_baseclass.explicit_wait_hrm(10, hrm_open_source_page)
             # Explicit and Implicit waits are not working. Check WHY ?
 
-
             hrm_open_source_page_element.click()
 
             # time.sleep(5)

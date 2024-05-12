@@ -11,6 +11,7 @@ class TestAdminPage(BaseClass):
 
     def test_add_system_user(self, postgresql_connection):
         """
+        This test case will login to application, navigates to
 
         :param postgresql_connection: This is a fixture which is called from tests/conftest, which establishes postgresql connection.
         :return: This method returns None
