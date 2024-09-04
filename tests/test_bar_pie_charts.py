@@ -8,6 +8,9 @@ def test_bar_pie_charts(bar_pie_charts_setup):
     driver = bar_pie_charts_setup
     obj_actions = ActionChains(driver)
 
+    scroll_to_element_one = driver.find_element(by=By.XPATH, value="//div[@class = 'page-header']/h1")
+    scroll_to_element_two = driver.find_element(by=By.XPATH, value="//label[text() = 'Schedule showing EMI payments starting from']")
+
     bars = driver.find_elements(by=By.XPATH, value="//*[local-name() = 'svg']//*[name() = 'g' and @class = 'highcharts-series-group']//*[name() = 'rect']")
     bar_tooltip_path = "//*[local-name() = 'svg']//*[name() = 'g' and @class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//*[name() = 'text']//*[name() = 'tspan']"
     # bar_tooltip_path = "//*[local-name() = 'svg']//*[name() = 'g' and @class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//*[name() = 'text']"
@@ -37,21 +40,25 @@ def test_bar_pie_charts(bar_pie_charts_setup):
             print("Column Number in Row: " + str(row) + " is : ", col_num)
             print(column_element.text)
 
+    time.sleep(3)
+    driver.execute_script("arguments[0].scrollIntoView(true);", scroll_to_element_two)
+    time.sleep(3)
+
     # Bar Chart Data
     for each_bar in bars:
+        time.sleep(0.5)
         obj_actions.move_to_element(each_bar).perform()
-        time.sleep(1)
-        print(bar_tooltip_path)
+        # print(bar_tooltip_path)
         bar_tooltip_elements = driver.find_elements(by=By.XPATH, value=bar_tooltip_path)
-        print(len(bar_tooltip_elements))
-        y = bar_tooltip_path + "[1]"
-        bar_tooltip_element_text = driver.find_element(by=By.XPATH, value=y).text
-        print(bar_tooltip_element_text)
-        # print(bar_tooltip_elements)
-        # x = driver.find_element(by=By.XPATH, value="//*[local-name() = 'svg']//*[name() = 'g' and @class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//*[name() = 'text']//*[name() = 'tspan'][1]").text
-        # print(x)
+        # print(len(bar_tooltip_elements))
 
-        # print(">>>>>>>>>>>>>>>>---->>> ", bar_tooltip_text)
-        # time.sleep(3)
+        print("=================")
+        for item in range(1, len(bar_tooltip_elements) + 1):
+            tooltip_each_item_path = bar_tooltip_path + "[" + str(item) + "]"
+            print(tooltip_each_item_path)
+            bar_tooltip_element_text = driver.find_element(by=By.XPATH, value=tooltip_each_item_path).text
+
+            print(bar_tooltip_element_text.split(":")[1].strip())
+        print("=================")
 
     time.sleep(15)
