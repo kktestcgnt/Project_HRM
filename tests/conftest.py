@@ -56,6 +56,24 @@ def alerts_setup():
 
 
 @pytest.fixture()
+def bar_pie_charts_setup():
+    read_data = BaseClass()
+    login_creds = read_data.get_data()
+
+    app_url = login_creds['bar_pie_charts_page']["bar_pie_charts_app_url"]
+
+    driver_service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=driver_service)
+
+    driver.maximize_window()
+    driver.get(app_url)
+    time.sleep(5)
+
+    print("Driver from Fixture : ", driver)
+    return driver
+
+
+@pytest.fixture()
 def mongodb_connection(request):
     class MongoDB:
 
