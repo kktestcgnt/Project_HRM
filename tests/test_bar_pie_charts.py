@@ -1,9 +1,12 @@
 import time
 
+import pytest
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 
 
+@pytest.mark.regression
+@pytest.mark.smoke
 def test_bar_pie_charts(bar_pie_charts_setup):
     driver = bar_pie_charts_setup
     obj_actions = ActionChains(driver)

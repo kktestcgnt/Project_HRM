@@ -1,5 +1,6 @@
 import time
 
+import pytest
 from selenium.webdriver.common.by import By
 
 from common.common import BaseClass
@@ -9,6 +10,8 @@ from objects.admin_page_objects import AdminPageObjects
 
 class TestAdminPage(BaseClass):
 
+    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_add_system_user(self, postgresql_connection):
         """
         This test case will login to application, navigates to
@@ -94,5 +97,3 @@ class TestAdminPage(BaseClass):
         self.logging().info('Add System user success validation Successful')
 
         time.sleep(10)
-
-

@@ -1,11 +1,12 @@
 import time
 
+import pytest
 from selenium.webdriver.common.by import By
 from common.common import BaseClass
 
 
+@pytest.mark.smoke
 def test_handling_multiple_windows(multiple_window_setup):
-
     driver = multiple_window_setup
     obj_baseclass = BaseClass()
     obj_baseclass.driver = driver
@@ -57,4 +58,3 @@ def test_handling_multiple_windows(multiple_window_setup):
     driver.switch_to.window(child_window_handles2[0])
 
     time.sleep(10)
-

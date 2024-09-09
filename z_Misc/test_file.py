@@ -76,4 +76,4 @@ def display_check(check_output):
     print('in display check function')
 
 
-display_check()
+# display_check()

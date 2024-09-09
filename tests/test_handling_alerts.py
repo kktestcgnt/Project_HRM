@@ -1,10 +1,12 @@
 import time
 
+import pytest
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from common.common import BaseClass
 
 
+@pytest.mark.regression
 def test_handling_page_alerts(alerts_setup):
     driver = alerts_setup
 
