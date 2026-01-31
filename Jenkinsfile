@@ -15,8 +15,8 @@ pipeline {
                 echo "Checking Python version"
                 python3 --version
 
-                echo "Running one.py"
-                python3 one.py
+                echo "Running sample.py"
+                python3 sample.py
                 '''
             }
         }
